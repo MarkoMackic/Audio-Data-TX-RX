@@ -5,7 +5,7 @@ import copy
 import pyaudio
 import wave
 
-threshold = 600 
+threshold = 500 
 rate = 128000
 chunk_size = 4096
 silent_chunks = 3 * rate / chunk_size  # about 3sec
@@ -62,7 +62,7 @@ def record():
                         break
 
                 else: 
-                    silent_chunks = 0
+                    sc = 0
             elif not silent:
                 print("Started recording")
                 audio_started = True              
