@@ -4,8 +4,7 @@ from time import sleep
 import numpy as np
 
 RATE = 128000 # hardcoded sampling rate
-amplitude = 30000 
-
+amplitude = 2**15 - 12334
 pa = pyaudio.PyAudio()
 stream = pa.open(
             output=True,
@@ -18,9 +17,9 @@ def note(freq, length, amp=1, rate=44100):
     '''Generate a note given frequency, 
     amplitude, duration and sampling rate
     '''
-     t = linspace(0,length,length*rate) # generate x axis
-     data = sin(2*pi*freq*t)*amp # generate y axis
-     return data.astype(int16) # return data
+    t = linspace(0,length,length*rate) # generate x axis
+    data = sin(2*pi*freq*t)*amp # generate y axis
+    return data.astype(int16) # return data
 
 tone0 = note(19000, (1/19000) * (19000/20), amplitude, rate=RATE) # tone for 0
 tone1 = note(19500, (1/19500) * (19500/20), amplitude, rate=RATE) # tone for 1

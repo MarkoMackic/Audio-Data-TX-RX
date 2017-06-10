@@ -77,12 +77,12 @@ def decode(file_name):
 
         if(abs(thefreq-19000) < fet):
             if waitpause == 0:
-                print("Received 0")
+                print("Recieved 0")
                 buf.append('0')
                 waitpause = 1
         elif(abs(thefreq-19500) < fet):
             if waitpause == 0:
-                print("Received 1")
+                print("Recieved 1")
                 buf.append('1')
                 waitpause = 1
 
@@ -93,13 +93,12 @@ def decode(file_name):
 
     if data:
         stream.write(data) #write to stream if somehting left
-
-    if len(buf) % 7 != 0 or len(buf) == 0:
-        raise DecodeException('Error in decoding. Buffer length is not multiple of 7.')
-    else:
-        for i in grouper(buf, 7):
+    if len(buf) > 0:
+        for i in grouper(buf, 7, '0'):
             print(i)
             output += chr(int(''.join(i), 2))
+        if len(buf) % 7 != 0:
+            print("Mistake during receiving or decoding!")
 
     return output
 

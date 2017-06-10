@@ -5,7 +5,7 @@ import copy
 import pyaudio
 import wave
 
-threshold = 500 
+threshold = 600 
 rate = 128000
 chunk_size = 4096
 silent_chunks = 3 * rate / chunk_size  # about 3sec
